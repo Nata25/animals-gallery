@@ -1,0 +1,152 @@
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+
+<!-- include our libraries and css files -->
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/handlebars-v3.0.3.js"></script>
+
+<script src="js/bootstrap.min.js"></script>
+<script src="AnimalsData.js"></script>
+<script src="assignment.js"></script>
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="assignment.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <header>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+           <div class="navbar-header">
+             <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-align-justify" data-toggle="collapse" data-target="#collapsed-navbar" aria-expanded="false">
+               <span class="sr-only">Toggle navigation</span>
+             </button>
+             <div class="navbar-brand" href="#">Animals on the Web</div>
+            </div>
+            <!-- end of nav header -->
+          <div class="collapse navbar-collapse" id="collapsed-navbar">
+            <ul class="nav navbar-nav" id="navigation">
+              <!-- this will be populated by template -->
+            </ul>
+          </div>
+        </div>
+        <!-- / end of container -->
+      </nav>
+
+    </header>
+
+    <main>
+      <div class="container" id="main">
+        <!-- this will be populated by templates -->
+     </div>
+
+     <!-- Template for home page:
+     consists of two parts.
+     Photo and description of "the animal of the day"
+     and outer template identifying category the animal belongs to.
+     Both category and animal are chosen randomly on each page reload
+     (see onclick event listener for home page).
+        -->
+    <script id="home_page" type="text/x-handlebars-template">
+      <div class="jumbotron">
+        <h1>Hello, the Animals World!</h1>
+        <p>This site will help you to learn some interesting facts about animals living on our planet.</p>
+      </div>
+      <div class="media">
+        <div id="hero">
+            <!-- insert here image and description of an animal -->
+        </div>
+      </div>
+      <div class="btn btn-default category learn_more">
+        <a href="#">Learn more about {{toLower name}}...</a>
+      </div>
+    </script>
+
+    <!-- Insert this into home page template -->
+    <script id="hero_image" type="text/x-handlebars-template">
+            <figure class="media-left" id="slide">
+              <figcaption>Today's hero is... <span class="bold">{{name}}!</span>
+                <div class="small"><sup>*</sup>&nbsp;Reload the page to get another hero. Image is clickable.</div>
+              </figcaption>
+              <img alt="{{name}}" src="{{image1}}" class="img-rounded img-responsive media-object slide-item showing-item"/>
+              <img alt="{{name}}" src="{{image2}}" class="img-rounded img-responsive media-object slide-item hidden" />
+            </figure>
+          <p class="media-middle media-body">{{description}}</p>
+    </script>
+
+
+    <!-- Template to display navigation bar -->
+    <script id="nav" type="text/x-handlebars-template">
+        <li id="home"><a href="#" class="active">Home</a></li>
+        {{#each category}}
+        <li class="category {{toLower name}}" id="{{toLower name}}" data-category="{{@index}}"><a href="#">{{name}}</a></li>
+        {{/each}}
+        <li id="all_categories"><a href="#">All Categories</a></li>
+    </script>
+
+
+    <!-- Template for briefly displaying animals in given category -->
+    <script id="animals" type="text/x-handlebars-template">
+      <h1 id="category_name" class="well well-lg"></h1>
+      <div class="row">
+        {{#each animals}}
+            <div class="animal-container col-md-6 col-lg-3" data-animal="{{@index}}">
+              <h2>{{name}}</h2>
+              <img class="thumbnail" src="{{image1}}" alt="{{name}}" />
+              <p>{{brief description}} &hellip;</p>
+              <p><a href="#">Read more&hellip;</a></p>
+            </div>
+          {{/each}}
+      </div>
+    </script>
+
+
+    <!-- Template for displaying individual animal -->
+    <script id="one-animal" type="text/x-handlebars-template">
+      <div class="row">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h1>{{name}}</h1></div>
+          <div class="panel-body">
+            <p>{{description}}</p>
+          </div>
+        </div>
+        <div class="text-center col-sm-6">
+          <img class="animals img-rounded" src="{{image1}}" alt="{{name}}" />
+        </div>
+        <div class="text-center col-sm-6">
+          <img class="animals img-rounded" src="{{image2}}" alt="{{name}}" />
+        </div>
+      </div>
+    </script>
+
+
+    <!-- Template for displaying all animals in all caterogies -->
+    <script id="all" type="text/x-handlebars-template">
+      {{#each category}}
+        <div class="row category-id" data-category="{{@index}}">
+          <div class="col-lg-12"><h1 class="{{toLower name}}">{{name}}:</h1></div>
+            {{#each animals}}
+                <div class="animal-container col-sm-6 col-lg-3"
+                     data-animal="{{@index}}">
+                  <h2>{{name}}</h2>
+                  <img class="thumbnail" src="{{image1}}" alt="{{name}}" />
+                </div>
+              {{/each}}
+        </div>
+      {{/each}}
+    </script>
+
+    </main>
+
+    <footer>
+      <div class="container">
+        <p class="small">Used: Bootstrap, jQuery, Javascript templates.</p>
+      </div>
+    </footer>
+
+</body>

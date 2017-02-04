@@ -1,0 +1,110 @@
+img.thumbnail {
+  height: 200px;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-left: 10px;
+}
+
+.active {
+  background-color: #DCDCDC;
+}
+
+.grey {
+  background-color: grey;
+}
+
+img.animals {
+  height: 300px;
+  margin-top: 20px;
+}
+
+.media-left {
+  width: 40%;
+  margin: 20px;
+}
+
+figcaption {
+  text-align: center;
+  font-size: 1.1em;
+}
+
+figure#slide {
+  position: relative;
+  text-align: center;
+}
+
+div.learn_more {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.bold {
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.small {
+  font-size: .7em;
+  margin: 10px;
+}
+
+main {
+  min-height: 89vh;
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  background-color: #eee;
+  border-top: 1px solid #e3e3e3;
+  margin-top: 30px;
+}
+
+/* Just for fun:
+on all categories page, bottom borders for the names of categories
+differs in color depending on id */
+h1.reptiles {
+  border-bottom: 3px solid #DCECDC;
+}
+
+h1.mammals {
+  border-bottom: 3px solid #D6D6D6;
+}
+
+h1.birds {
+  border-bottom: 3px solid #D7E0E8;
+}
+
+/* Tried to do the same with .active class,
+but this failed */
+li.reptiles.active {
+  background-color: #DCECDC;
+}
+
+li.mammals.active {
+  background-color: #D6D6D6;
+}
+
+li.birds.active {
+  background-color: #D7E0E8;
+}
+
+
+@media screen and (max-width: 767px) {
+
+  .jumbotron {
+    padding: 10px;
+  }
+
+  /* Force image and description on the home page
+  behave like col-xs-12 BS class
+  (which didn't work for me
+  probably because there's a conflict
+  with .media and .media-* BS classes) */
+  figure.media-left {
+    display: block;
+    width: 100%;
+  }
+}
